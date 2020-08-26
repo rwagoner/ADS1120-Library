@@ -1,7 +1,8 @@
-#ifndef ADS1220_h
-#define ADS1220_h
+#ifndef ADS1120_h
+#define ADS1120_h
 
-#include "Arduino.h"
+#include <Arduino.h>
+#include <SPI.h>
 
 #define SPI_MASTER_DUMMY   0xFF
 // Commands for the ADC
@@ -18,7 +19,7 @@
 #define CONFIG_REG2_ADDRESS 0x02
 #define CONFIG_REG3_ADDRESS 0x03
 
-// Register masks for setings
+// Register masks for settings
 // Register 0
 #define REG_MASK_MUX 0xF0
 #define REG_MASK_GAIN 0x0E
@@ -43,19 +44,22 @@
 #define REG_MASK_DRDY_MODE 0x02
 #define REG_MASK_RESERVED 0x01
 
-class ADS1220 {
+class ADS1120 {
   public:
-    ADS1220();
-    uint8_t ADS1220_CS_PIN;
-    uint8_t ADS1220_DRDY_PIN;
+    ADS1120();
+    uint8_t ADS1120_CS_PIN;
+    uint8_t ADS1120_DRDY_PIN;
     void writeRegister(uint8_t address, uint8_t value);
     uint8_t readRegister(uint8_t address);
     void begin(uint8_t cs_pin, uint8_t drdy_pin);
     bool isDataReady(void);
-    long readADC(void);
+    uint16_t readADC(void);
     byte * readADC_Array(void);
-    long readADC_Single(void);
+    uint16_t readADC_Single(void);
+    double readADC_SingleTemp(void);
     byte * readADC_SingleArray(void);
+    uint16_t convertToValue(byte * data);
+    double convertToTemp(byte * data);
     void sendCommand(uint8_t command);
     void reset(void);
     void startSync(void);

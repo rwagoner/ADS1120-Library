@@ -1,0 +1,25 @@
+{
+  "name": "ADS1120",
+  "keywords": "ADC, ADS, ADS1120",
+  "description": "An Arduino library for the SPI interface Texas Instruments ADS1120, 16-bit ADC.",
+  "authors":
+  [
+    {
+      "name": "Leeman Geophysical LLC",
+      "email": "kd5wxb@gmail.com"
+    },
+    {
+      "name": "Ryan Wagoner",
+      "email": "rswagoner@gmail.com",
+      "maintainer": true
+    }    
+  ],
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/rwagoner/ADS1120-Library"
+  },
+  "version": "0.1.0",
+  "frameworks": "arduino",
+  "platforms": "espressif"
+}
