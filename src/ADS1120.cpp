@@ -114,12 +114,12 @@ byte * ADS1120::readADC_SingleArray() {
 }
 
 uint16_t ADS1120::convertToValue(byte * data) {
-  return (data[0])<<8 | (data[1]); //Moving MSB and LSB to 16 bit
+  return ((uint16_t) data[0])<<8 | (data[1]); //Moving MSB and LSB to 16 bit
 }
 
 double ADS1120::convertToTemp(byte * data) { 
   // 14-bit result that is left-justified within the conversion result
-  uint16_t conversion = ((data[0])<<8 | (data[1])) >> 2;
+  uint16_t conversion = (((uint16_t) data[0])<<8 | (data[1])) >> 2;
     
   // Negative numbers are represented in binary twos complement format
   if(conversion >= 8192) {
